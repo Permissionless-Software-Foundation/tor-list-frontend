@@ -28,6 +28,8 @@ class DemoComponent extends React.Component {
             >
               This is the View portion of the Demo Component. This view is
               controlled by the src/demo-component/index.js file.
+
+              Change this component.
             </Box>
           </Col>
         </Row>
