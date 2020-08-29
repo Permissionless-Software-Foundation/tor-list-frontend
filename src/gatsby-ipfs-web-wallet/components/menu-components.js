@@ -9,6 +9,7 @@
 import React from 'react'
 import { Sidebar } from 'adminlte-2-react'
 import Browse from './Orbit/browse'
+import Write from './Orbit/write'
 
 const { Item } = Sidebar
 
@@ -17,6 +18,11 @@ const MenuComponents = [
     key: 'Browse',
     component: <Browse key='browse-component' />,
     menuItem: <Item icon='fas-search' key='Browse' text='Browse' />
+  },
+  {
+    key: 'Write',
+    component: <Write key='write-component' />,
+    menuItem: <Item icon='fas-plus-square' key='Write Component' text='Write' />
   }
 ]
 
