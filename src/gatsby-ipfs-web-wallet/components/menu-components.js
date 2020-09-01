@@ -8,15 +8,15 @@
 
 import React from 'react'
 import { Sidebar } from 'adminlte-2-react'
-import DemoComponent from '../../demo-component'
+import Browse from '../../components/orbit/browse'
 
 const { Item } = Sidebar
 
 const MenuComponents = [
   {
-    key: 'Demo Component',
-    component: <DemoComponent />,
-    menuItem: <Item icon='fas-cog' key='Demo Component' text='Demo Component' />
+    key: 'Browse',
+    component: <Browse key='browse-component' />,
+    menuItem: <Item icon='fas-search' key='Browse' text='Browse' />
   }
 ]
 
