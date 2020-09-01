@@ -8,8 +8,9 @@
 
 import React from 'react'
 import { Sidebar } from 'adminlte-2-react'
-import Browse from './Orbit/browse'
-import Write from './Orbit/write'
+
+import Browse from '../../components/orbit/browse'
+import Write from '../../components/orbit/write'
 
 const { Item } = Sidebar
 

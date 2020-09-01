@@ -90,11 +90,15 @@ class Write extends React.Component {
   async handlePostSite () {
     try {
       _this.setState({ inFetch: true })
+
+      console.log(`_this.state.site: ${_this.state.site}`)
+
       const res = await axios({
         url: 'https://tor-list-api.fullstack.cash/orbitdb/write',
+        // url: 'http://127.0.0.1:5001/orbitdb/write',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: { entry: _this.state.site }
+        data: { entry: _this.state.site }
       })
 
       _this.setState({
