@@ -8,7 +8,7 @@
 
 import React from 'react'
 import { Sidebar } from 'adminlte-2-react'
-import Browse from './Orbit/browse'
+import Browse from '../../components/orbit/browse'
 
 const { Item } = Sidebar
 

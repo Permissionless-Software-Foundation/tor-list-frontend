@@ -2,7 +2,7 @@ import React from 'react'
 import './browse.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Box, Content, SimpleTable } from 'adminlte-2-react'
-import axios from 'axios';
+import axios from 'axios'
 
 let _this
 class Browse extends React.Component {
@@ -69,7 +69,7 @@ class Browse extends React.Component {
     try {
       const res = await axios({
         method: 'get',
-        url: `https://tor-list-api.fullstack.cash/orbitdb/entries`,
+        url: 'https://tor-list-api.fullstack.cash/orbitdb/entries'
       })
       _this.setState({ entries: res.data.entries })
     } catch (error) {
