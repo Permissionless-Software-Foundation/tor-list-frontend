@@ -12,6 +12,8 @@ const initialState = {
   isError: ''
 }
 
+const SERVER = process.env.GATSBY_API_URL
+
 let _this
 class Write extends React.Component {
   constructor (props) {
@@ -94,8 +96,9 @@ class Write extends React.Component {
       console.log(`_this.state.site: ${_this.state.site}`)
 
       const res = await axios({
-        url: 'https://tor-list-api.fullstack.cash/orbitdb/write',
+        // url: 'https://tor-list-api.fullstack.cash/orbitdb/write',
         // url: 'http://127.0.0.1:5001/orbitdb/write',
+        url: `${SERVER}/orbitdb/write`,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         data: { entry: _this.state.site }
