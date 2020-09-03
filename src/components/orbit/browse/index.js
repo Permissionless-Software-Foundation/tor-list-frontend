@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Box, Content, SimpleTable } from 'adminlte-2-react'
 import axios from 'axios'
 
+const SERVER = process.env.GATSBY_API_URL
+
 let _this
 class Browse extends React.Component {
   constructor (props) {
@@ -69,7 +71,8 @@ class Browse extends React.Component {
     try {
       const res = await axios({
         method: 'get',
-        url: 'https://tor-list-api.fullstack.cash/orbitdb/entries'
+        // url: 'https://tor-list-api.fullstack.cash/orbitdb/entries'
+        url: `${SERVER}/orbitdb/entries`
       })
       _this.setState({ entries: res.data.entries })
     } catch (error) {
