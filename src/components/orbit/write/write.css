@@ -1,0 +1,10 @@
+label[for="category"] {
+  float: none;
+  width: auto;
+}
+
+label[for="category"] + div {
+  float: none;
+  width: 100%;
+  padding: 0px;
+}
