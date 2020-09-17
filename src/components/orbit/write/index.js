@@ -73,6 +73,8 @@ class Write extends React.Component {
       _this.setState({ inFetch: true })
       console.log(`_this.state.site: ${_this.state.site}`)
 
+      console.log(`SERVER: ${SERVER}`)
+
       const res = await axios({
         // url: 'https://tor-list-api.fullstack.cash/orbitdb/write',
         // url: 'http://127.0.0.1:5001/orbitdb/write',
@@ -199,7 +201,6 @@ class Write extends React.Component {
       </Content>
     )
   }
-
 }
 
 export default Write
