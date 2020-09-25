@@ -1,10 +1,12 @@
 import React from 'react'
 import './browse.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Row, Col, Box, Content, Button } from 'adminlte-2-react'
+import { Row, Col, Box, Content, Button, Inputs } from 'adminlte-2-react'
 import axios from 'axios'
 
 const SERVER = process.env.GATSBY_API_URL
+
+const { Select } = Inputs
 
 let _this
 class Browse extends React.Component {
@@ -15,6 +17,7 @@ class Browse extends React.Component {
     this.state = {
       showModal: false,
       modalEntry: null,
+      category: '',
       entries: null
     }
   }
@@ -23,12 +26,14 @@ class Browse extends React.Component {
     _this.fetchDbEntries()
   }
 
-  async fetchDbEntries () {
+  async fetchDbEntries(category) {
     try {
+      _this.setState({ entries: null })
+      const path = category ? `/c/${category}` : '';
       const res = await axios({
         method: 'get',
-        // url: 'https://tor-list-api.fullstack.cash/orbitdb'
-        url: `${SERVER}/orbitdb`
+        // url: `https://tor-list-api.fullstack.cash/orbitdb${path}`
+        url: `${SERVER}/orbitdb${path}`
       })
 
       _this.setState({ entries: res.data.entries })
@@ -38,9 +43,26 @@ class Browse extends React.Component {
     }
   }
 
-  showModal (item) {
-    if (!item.entry || !item.description) {
-      return
+  handleUpdate (e) {
+    _this.setState({ [e.target.name]: e.target.value })
+
+    _this.fetchDbEntries(e.target.value);
+  }
+
+  getCategoryOptions () {
+    return [
+      { text: 'All categories', value: '' },
+      { text: 'Bitcoin Cash', value: 'bch' },
+      { text: 'eCommerce', value: 'ecommerce' },
+      { text: 'Information', value: 'info' },
+      { text: 'Ethereum', value: 'eth' },
+      { text: 'IPFS', value: 'ipfs' }
+    ]
+  }
+
+  showModal(item) {
+    if(!item.entry || !item.description) {
+      return;
     }
     _this.setState({ modalEntry: item, showModal: true })
   }
@@ -117,6 +139,13 @@ class Browse extends React.Component {
                   </h1>
                 </Col>
                 <Col xs={12}>
+                  <Select
+                    label='Filter by category'
+                    name='category'
+                    options={_this.getCategoryOptions()}
+                    onChange={_this.handleUpdate}
+                    value={_this.state.category}
+                  />
                   {_this.ContentTable()}
                 </Col>
               </Row>
