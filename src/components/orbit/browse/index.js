@@ -1,27 +1,29 @@
 import React from 'react'
 import './browse.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Row, Col, Box, Content } from 'adminlte-2-react'
+import { Row, Col, Box, Content, Button } from 'adminlte-2-react'
 import axios from 'axios'
 
 const SERVER = process.env.GATSBY_API_URL
 
 let _this
 class Browse extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super()
     _this = this
 
     this.state = {
+      showModal: false,
+      modalEntry: null,
       entries: null
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     _this.fetchDbEntries()
   }
 
-  async fetchDbEntries() {
+  async fetchDbEntries () {
     try {
       const res = await axios({
         method: 'get',
@@ -36,7 +38,18 @@ class Browse extends React.Component {
     }
   }
 
-  ContentTable() {
+  showModal (item) {
+    if (!item.entry || !item.description) {
+      return
+    }
+    _this.setState({ modalEntry: item, showModal: true })
+  }
+
+  handleHideModal () {
+    _this.setState({ modalEntry: null, showModal: false })
+  }
+
+  ContentTable () {
     if (!_this.state.entries) {
       return <Box className='p-5 no-shadow border-none' loaded={false} />
     }
@@ -49,24 +62,41 @@ class Browse extends React.Component {
     }
 
     const rows = _this.state.entries.map((item) => {
+      const isLonger = item.description.length > 80
+      const eol = isLonger ? '...' : ''
       return (
         <tr key={item._id}>
           <td>
             <p><strong>{item.entry}</strong></p>
-            <p>{item.description.substring(0, 80)}</p>
+            <p>
+              {item.description.substring(0, 80) + eol}
+            </p>
+          </td>
+          <td className='more-info'>
+            <div>
+              {!isLonger ? '' : <Button text='more info' onClick={() => _this.showModal(item)} />}
+            </div>
           </td>
         </tr>
       )
-    });
+    })
 
     return (
-      <table className="table">
-        { rows }
+      <table className='table'>
+        <thead />
+        <tbody>
+          {rows}
+        </tbody>
       </table>
     )
   }
 
-  render() {
+  modalFooter () {
+    return <Button text='Close' onClick={_this.handleHideModal} />
+  }
+
+  render () {
+    const { modalEntry: item, showModal } = _this.state
     return (
       <Content browserTitle='Browse - Tor list'>
         <Row>
@@ -94,6 +124,14 @@ class Browse extends React.Component {
           </Col>
           <Col md={1} />
         </Row>
+        <Content
+          modal
+          title={item ? item.entry : ''}
+          show={showModal}
+          modalFooter={_this.modalFooter()}
+        >
+          {item ? item.description : ''}
+        </Content>
       </Content>
     )
   }
