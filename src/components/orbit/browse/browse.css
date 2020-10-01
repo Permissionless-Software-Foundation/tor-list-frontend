@@ -8,6 +8,11 @@ td > p {
   margin-bottom: 0.5rem;
 }
 
+.dark-text {
+  text-decoration: none;
+  color: #000 !important;
+}
+
 .more-info {
   max-width: 100px;
   width: 100px;
