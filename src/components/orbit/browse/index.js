@@ -26,10 +26,10 @@ class Browse extends React.Component {
     _this.fetchDbEntries()
   }
 
-  async fetchDbEntries(category) {
+  async fetchDbEntries (category) {
     try {
       _this.setState({ entries: null })
-      const path = category ? `/c/${category}` : '';
+      const path = category ? `/c/${category}` : ''
       const res = await axios({
         method: 'get',
         // url: `https://tor-list-api.fullstack.cash/orbitdb${path}`
@@ -46,7 +46,7 @@ class Browse extends React.Component {
   handleUpdate (e) {
     _this.setState({ [e.target.name]: e.target.value })
 
-    _this.fetchDbEntries(e.target.value);
+    _this.fetchDbEntries(e.target.value)
   }
 
   getCategoryOptions () {
@@ -60,9 +60,9 @@ class Browse extends React.Component {
     ]
   }
 
-  showModal(item) {
-    if(!item.entry || !item.description) {
-      return;
+  showModal (item) {
+    if (!item.entry || !item.description) {
+      return
     }
     _this.setState({ modalEntry: item, showModal: true })
   }
@@ -86,10 +86,16 @@ class Browse extends React.Component {
     const rows = _this.state.entries.map((item) => {
       const isLonger = item.description.length > 80
       const eol = isLonger ? '...' : ''
+      const url = item.entry.startsWith('http://') || item.entry.startsWith('https://')
+        ? item.entry : `http://${item.entry}`
       return (
         <tr key={item._id}>
           <td>
-            <p><strong>{item.entry}</strong></p>
+            <p>
+              <a href={url} target='_blank' className='dark-text' rel='noopener noreferrer'>
+                <strong>{item.entry}</strong>
+              </a>
+            </p>
             <p>
               {item.description.substring(0, 80) + eol}
             </p>
