@@ -1,0 +1,85 @@
+.main-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 65px 1fr;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-box-container {
+  flex-grow: 1;
+  
+}
+
+.form-control.input-lg {
+  height: 50px;
+}
+
+.shadow { 
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4) !important;
+}
+
+label {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+header {
+  background-color: #00a74f;
+  margin-bottom: 1.45rem;
+  color: #fff;
+  text-decoration: none !important;
+}
+
+header > div {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0.75rem 1.0875rem;
+}
+
+.flex-center {
+	width: 100%;
+	display: flex;
+	align-items: center;
+  justify-content: center;
+}
+.flex-column {
+  flex-direction: column;
+}
+
+.header-version-status div {
+  color: #fff !important;
+  background-color: #ff4500;
+  height: 35px;
+  padding: 0 3rem;
+  width: 60%;
+}
+
+.header-version-status div p {
+  margin: 8px 0;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+form div {
+  float: none !important;
+}
+
+.btn-lg {
+  margin-top: 2rem;
+  padding: 1.5rem 2rem !important;
+}
+
+.login-container {
+  min-height: calc(100vh - 65px);
+}
