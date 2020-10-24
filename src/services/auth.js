@@ -1,3 +1,7 @@
+/*
+  Interacts with the REST API for logging in a user.
+*/
+
 import axios from 'axios'
 
 const SERVER = process.env.AUTHSERVER
@@ -15,6 +19,8 @@ export const setLocalUser = user =>
 export const handleLogin = async ({ email, password }) => {
   // Try to authenticate.
   try {
+    console.log('server: ', SERVER)
+
     const options = {
       url: `${SERVER}/auth`,
       method: 'POST',
@@ -26,6 +32,8 @@ export const handleLogin = async ({ email, password }) => {
     }
     const res = await axios(options)
     const users = res.data
+
+    console.log(`users: ${JSON.stringify(users, null, 2)}`)
 
     setLocalUser({
       username: users.user.username,

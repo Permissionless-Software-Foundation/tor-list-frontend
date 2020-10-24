@@ -18,7 +18,7 @@ class Homepage extends React.Component {
   }
 
   handleLogin () {
-    navigate('/browse')
+    navigate('/')
   }
 
   render () {
