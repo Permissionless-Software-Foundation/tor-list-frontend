@@ -1,53 +1,50 @@
-import React from 'react'
-import { navigate } from 'gatsby'
-import LoginForm from '../components/login-form'
+import React from "react"
+import { navigate } from "gatsby"
+import LoginForm from "../components/login-form"
+import Footer from "../components/footer"
 
-import { Row, Col, Box } from 'adminlte-2-react'
-
-import './admin.css'
-
-import Footer from 'gatsby-ipfs-web-wallet/src/components/footer/index'
+import "./admin.css"
 
 let _this
 class Homepage extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super()
     _this = this
 
     this.state = {}
   }
 
-  handleLogin () {
-    navigate('/')
+  handleLogin() {
+    navigate("/")
   }
 
-  render () {
+  render() {
     return (
-      <div className='main-container'>
+      <div className="main-container">
         <header>
-          <div className='flex-center header-version-status'>
+          <div className="flex-center header-version-status">
             <div>
               <p>Warning: Open Alpha - things will break</p>
             </div>
           </div>
         </header>
         <main>
-          <Row className='login-box-container flex justify-content-center'>
-            <Col xs={10} md={6}>
-              <Box className='shadow border-none mt-2'>
-                <Row>
-                  <Col xs={12} className='text-center'>
+          <div className="login-box-container flex justify-content-center">
+            <div className="col-10 col-md-6">
+              <div className="shadow border-none mt-3">
+                <div className="d-flex">
+                  <div className="col-12 text-center">
                     <h1>
                       <span>Admin - Log in</span>
                     </h1>
-                  </Col>
-                  <Col sm={12} className='text-center mt-1 mb-1'>
+                  </div>
+                  <div className="col-12 text-center mt-1 mb-1">
                     <LoginForm onLogin={_this.handleLogin} />
-                  </Col>
-                </Row>
-              </Box>
-            </Col>
-          </Row>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <Footer />
         </main>
       </div>
