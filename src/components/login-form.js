@@ -1,7 +1,7 @@
 import React from 'react'
-import { Col, Inputs } from 'adminlte-2-react'
 import { handleLogin } from '../services/auth'
-const { Text } = Inputs
+
+import './login-form.css'
 
 const emailChecker = new RegExp(
   '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(.\\w{2,3})+$'
@@ -69,46 +69,58 @@ class LoginForm extends React.Component {
 
   render () {
     return (
-      <form className="flex-center flex-column">
-        <Col sm={8}>
-          <Text
-            size="lg"
-            id="email"
-            name="email"
-            label="User"
-            labelPosition="above"
-            inputType="email"
-            value={_this.state.email}
-            onChange={_this.handleUpdate}
-            disabled={_this.state.inFetch}
-          />
-          <Text
-            size="lg"
-            id="password"
-            name="password"
-            label="Password"
-            labelPosition="above"
-            inputType="password"
-            value={_this.state.password}
-            onChange={_this.handleUpdate}
-            disabled={_this.state.inFetch}
-          />
-        </Col>
-        <Col sm={12} className="text-center mb-1">
+      <form className='flex-center flex-column'>
+        <div className='col-8'>
+          <div className='form-group'>
+            <label htmlFor='email'>User</label>
+            <div
+              className='input-group input-group-lg'
+              style={{ width: '100%' }}
+            >
+              <input
+                type='email'
+                className='form-control input-lg'
+                name='email'
+                id='email'
+                value={_this.state.email}
+                onChange={_this.handleUpdate}
+                disabled={_this.state.inFetch}
+              />
+            </div>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='password'>Password</label>
+            <div
+              className='input-group input-group-lg'
+              style={{ width: '100%' }}
+            >
+              <input
+                type='password'
+                className='form-control input-lg'
+                name='password'
+                id='password'
+                value={_this.state.password}
+                onChange={_this.handleUpdate}
+                disabled={_this.state.inFetch}
+              />
+            </div>
+          </div>
+        </div>
+        <div className='col-12 text-center mb-1'>
           <button
-            type="submit"
-            className="btn btn-primary btn-lg"
+            type='submit'
+            className='btn btn-primary btn-lg'
             onClick={_this.handleSubmitButton}
             disabled={_this.state.inFetch || _this.isInvalid()}
           >
             Submit
           </button>
-        </Col>
-        <Col sm={12} className="text-center">
+        </div>
+        <div className='col-12 text-center'>
           {_this.state.message && (
-            <p className="error-color">{_this.state.message}</p>
+            <p className='error-color'>{_this.state.message}</p>
           )}
-        </Col>
+        </div>
       </form>
     )
   }

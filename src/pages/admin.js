@@ -1,12 +1,9 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import LoginForm from '../components/login-form'
-
-import { Row, Col, Box } from 'adminlte-2-react'
+import Footer from '../components/footer'
 
 import './admin.css'
-
-import Footer from 'gatsby-ipfs-web-wallet/src/components/footer/index'
 
 let _this
 class Homepage extends React.Component {
@@ -32,22 +29,22 @@ class Homepage extends React.Component {
           </div>
         </header>
         <main>
-          <Row className='login-box-container flex justify-content-center'>
-            <Col xs={10} md={6}>
-              <Box className='shadow border-none mt-2'>
-                <Row>
-                  <Col xs={12} className='text-center'>
+          <div className='login-box-container flex justify-content-center'>
+            <div className='col-10 col-md-6'>
+              <div className='shadow border-none mt-3'>
+                <div className='d-flex'>
+                  <div className='col-12 text-center'>
                     <h1>
                       <span>Admin - Log in</span>
                     </h1>
-                  </Col>
-                  <Col sm={12} className='text-center mt-1 mb-1'>
+                  </div>
+                  <div className='col-12 text-center mt-1 mb-1'>
                     <LoginForm onLogin={_this.handleLogin} />
-                  </Col>
-                </Row>
-              </Box>
-            </Col>
-          </Row>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <Footer />
         </main>
       </div>
