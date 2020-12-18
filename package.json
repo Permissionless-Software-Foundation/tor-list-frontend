@@ -21,8 +21,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "gatsby": "^2.24.91",
-    "gatsby-ipfs-web-wallet": "1.9.23",
-    "gatsby-plugin-bch-tx-history": "^1.1.0"
+    "gatsby-ipfs-web-wallet": "1.18.2"
   },
   "repository": {
     "type": "git",
@@ -33,7 +32,7 @@
   },
   "devDependencies": {
     "husky": "^4.3.0",
-    "semantic-release": "^17.1.1",
+    "semantic-release": "^17.3.0",
     "standard": "^14.3.4"
   },
   "release": {
