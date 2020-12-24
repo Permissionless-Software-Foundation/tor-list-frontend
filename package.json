@@ -16,12 +16,12 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "npm run lint"
+    "test": "npm run lint && npm run build"
   },
   "dependencies": {
     "axios": "^0.20.0",
     "gatsby": "^2.24.91",
-    "gatsby-ipfs-web-wallet": "1.18.2"
+    "gatsby-ipfs-web-wallet": "1.18.6"
   },
   "repository": {
     "type": "git",
