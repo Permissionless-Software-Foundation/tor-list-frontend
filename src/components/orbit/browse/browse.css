@@ -25,3 +25,7 @@ td > p {
 .p-5 {
   padding: 3rem;
 }
+.icon{
+  cursor: pointer;
+  color: var(--main-color);
+}

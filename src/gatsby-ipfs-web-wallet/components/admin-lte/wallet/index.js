@@ -16,7 +16,8 @@ class Wallet2 extends Wallet {
   render () {
     return (
       <>
-        <Wallet {...this.props} importComponents={this.addCards()} />
+        {/*         <Wallet {...this.props} importComponents={this.addCards()} /> */}
+        <Wallet {...this.props} />
       </>
     )
   }
