@@ -50,6 +50,19 @@ class Homepage extends React.Component {
       </div>
     )
   }
+
+  componentDidMount () {
+    _this.hideSplashLoader()
+  }
+
+  hideSplashLoader () {
+    try {
+      const loader = document.getElementById('___loader')
+      loader.className = 'display-none'
+    } catch (error) {
+      console.warn(error)
+    }
+  }
 }
 
 export default Homepage
