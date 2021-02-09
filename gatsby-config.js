@@ -7,6 +7,7 @@
 module.exports = {
   /* Your site config here */
   plugins: [
-    'gatsby-ipfs-web-wallet'
+    'gatsby-ipfs-web-wallet',
+    'gatsby-plugin-bch-sign'
   ]
 }

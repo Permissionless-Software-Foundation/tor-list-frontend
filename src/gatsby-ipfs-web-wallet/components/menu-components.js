@@ -9,6 +9,9 @@
 import React from 'react'
 import { Sidebar } from 'adminlte-2-react'
 
+// Sign message plugin
+import SignMessage from 'gatsby-plugin-bch-sign'
+
 import Wallet from 'gatsby-ipfs-web-wallet/src/components/admin-lte/wallet'
 import Tokens from 'gatsby-ipfs-web-wallet/src/components/admin-lte/tokens'
 import Configure from 'gatsby-ipfs-web-wallet/src/components/admin-lte/configure'
@@ -51,6 +54,11 @@ const MenuComponents = props => [
     key: 'Wallet',
     component: <Wallet key='Wallet' {...props} />,
     menuItem: <Item icon='fa-wallet' key='Wallet' text='Wallet' />
+  },
+  {
+    key: 'Sign Message',
+    component: <SignMessage key='Sign Message' {...props} />,
+    menuItem: <Item icon='fa-file-signature' key='Sign Message' text='Sign Message' />
   },
   {
     key: 'Configure',
