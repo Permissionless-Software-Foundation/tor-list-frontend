@@ -31,7 +31,7 @@ const MenuComponents = props => [
   },
   {
     key: 'Write',
-    component: <Write key='write-component' />,
+    component: <Write key='write-component' {...props} />,
     menuItem: <Item icon='fas-plus-square' key='Write Component' text='Write' />
   },
   {
@@ -58,7 +58,9 @@ const MenuComponents = props => [
   {
     key: 'Sign Message',
     component: <SignMessage key='Sign Message' {...props} />,
-    menuItem: <Item icon='fa-file-signature' key='Sign Message' text='Sign Message' />
+    menuItem: (
+      <Item icon='fa-file-signature' key='Sign Message' text='Sign Message' />
+    )
   },
   {
     key: 'Configure',

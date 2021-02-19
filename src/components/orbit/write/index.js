@@ -39,11 +39,13 @@ class Write extends React.Component {
   }
 
   isInvalid () {
-    return !_this.state.site.trim() ||
+    return (
+      !_this.state.site.trim() ||
       !_this.state.slpAddress.trim() ||
       !_this.state.description.trim() ||
       !_this.state.signature.trim() ||
       !_this.state.category.trim()
+    )
   }
 
   handleUpdateTrim (e) {
@@ -103,6 +105,38 @@ class Write extends React.Component {
     _this.setState({ isError: false, msg: '' })
   }
 
+  async handleSign () {
+    try {
+      const { site } = _this.state
+      const { privateKey } = _this.props.walletInfo
+      const { bchjs } = _this.props.bchWallet
+
+      if (!site) {
+        throw new Error('Site is require')
+      }
+      _this.setState({
+        inFetch: true
+      })
+
+      const signature = await bchjs.BitcoinCash.signMessageWithPrivKey(
+        privateKey,
+        site
+      )
+      console.log(`Signature : ${signature}`)
+      _this.setState({
+        inFetch: false,
+        signature
+      })
+    } catch (err) {
+      console.error(err)
+      _this.setState({
+        msg: err.message,
+        inFetch: false,
+        isError: true
+      })
+    }
+  }
+
   render () {
     return (
       <Content browserTitle='Add entry to Tor list'>
@@ -117,9 +151,7 @@ class Write extends React.Component {
                       size='xs'
                       icon='plus-square'
                     />
-                    <span>
-                      Add entry to Tor list
-                    </span>
+                    <span>Add entry to Tor list</span>
                   </h1>
                 </Col>
                 <Col sm={12} className='text-center mt-1 mb-1'>
@@ -150,7 +182,7 @@ class Write extends React.Component {
                           name='description'
                           inputType='textarea'
                           rows={3}
-                          placeholder={'what\'s this site for?'}
+                          placeholder={"what's this site for?"}
                           label='Description'
                           labelPosition='above'
                           onChange={_this.handleUpdate}
@@ -164,7 +196,17 @@ class Write extends React.Component {
                           labelPosition='above'
                           onChange={_this.handleUpdate}
                           value={_this.state.signature}
-                          disabled={_this.state.inFetch}
+                          disabled={_this.state.inFetch || !_this.state.site}
+                          buttonRight={
+                            <Button
+                              type='primary'
+                              disabled={
+                                _this.state.inFetch || !_this.state.site
+                              }
+                              text='Sign'
+                              onClick={_this.handleSign}
+                            />
+                          }
                         />
                         <Select
                           label='Category'
