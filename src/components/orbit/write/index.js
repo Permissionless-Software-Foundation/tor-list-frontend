@@ -137,6 +137,27 @@ class Write extends React.Component {
     }
   }
 
+  // Set slp address into text field
+  handleSlpAddr () {
+    try {
+      const { slpAddress } = _this.props.walletInfo
+      if (!slpAddress) {
+        throw new Error('Wallet Not Found!')
+      }
+      _this.setState({
+        slpAddress
+      })
+    } catch (err) {
+      _this.setState({
+        msg: err.message,
+        inFetch: false,
+        isError: true
+      })
+    } finally {
+      setTimeout(_this.hideMessage, 4000)
+    }
+  }
+
   render () {
     return (
       <Content browserTitle='Add entry to Tor list'>
@@ -176,6 +197,14 @@ class Write extends React.Component {
                           onChange={_this.handleUpdate}
                           value={_this.state.slpAddress}
                           disabled={_this.state.inFetch}
+                          buttonRight={
+                            <Button
+                              type='primary'
+                              disabled={_this.state.inFetch}
+                              text='ADD'
+                              onClick={_this.handleSlpAddr}
+                            />
+                          }
                         />
                         <Text
                           id='description-input'
